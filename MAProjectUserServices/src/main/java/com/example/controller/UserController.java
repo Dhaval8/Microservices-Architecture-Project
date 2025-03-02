@@ -22,11 +22,6 @@ public class UserController {
         return userService.registerUser(user);
     }
 
-    @GetMapping("/{email}")
-    public Optional<User> getUserByEmail(@PathVariable String email) {
-        return userService.getUserByEmail(email);
-    }
-
     @GetMapping("/")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
