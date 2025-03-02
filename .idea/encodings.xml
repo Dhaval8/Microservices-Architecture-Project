@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/MAProjectApiGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MAProjectBookingServices/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MAProjectEurekaServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MAProjectPaymentServices/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MAProjectUserServices/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MAProjectVehicleServices/src/main/java" charset="UTF-8" />
+  </component>
+</project>
