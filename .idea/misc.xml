@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/MAProjectBookingServices/pom.xml" />
         <option value="$PROJECT_DIR$/MAProjectPaymentServices/pom.xml" />
         <option value="$PROJECT_DIR$/MAProjectVehicleServices/pom.xml" />
+        <option value="$PROJECT_DIR$/MAProjectOwnerServices/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

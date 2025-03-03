@@ -10,41 +10,41 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/owners")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    // Create Owner
-    @PostMapping
-    public ResponseEntity<User> createOwner(@RequestBody User user) {
+    // Create User
+    @PostMapping("/")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.createUser(user));
     }
 
-    // Get All Owners
-    @GetMapping
-    public ResponseEntity<List<User>> getAllOwners() {
+    // Get All Users
+    @GetMapping("/")
+    public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    // Get Owner by ID
+    // Get User by ID
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<User> getUserById(@PathVariable int id) {
         Optional<User> owner = userService.getUserById(id);
         return owner.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Update Owner
+    // Update User
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateOwner(@PathVariable Long id, @RequestBody User user) {
-        User updatedOwner = userService.updateUser(id, user);
-        return updatedOwner != null ? ResponseEntity.ok(updatedOwner) : ResponseEntity.notFound().build();
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
+        User updatedUser = userService.updateUser(id, user);
+        return updatedUser != null ? ResponseEntity.ok(updatedUser) : ResponseEntity.notFound().build();
     }
 
     // Delete Owner
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable int id) {
         return userService.deleteUser(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }

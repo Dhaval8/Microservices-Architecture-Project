@@ -7,7 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MAProjectEurekaServer" />
+        <module name="MAProjectOwnerServices" />
       </profile>
       <profile name="Annotation profile for MAProjectUserServices" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -15,16 +15,17 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
-        <module name="MAProjectPaymentServices" />
-        <module name="MAProjectVehicleServices" />
         <module name="MAProjectUserServices" />
-        <module name="MAProjectBookingServices" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="MAProjectApiGateway" target="23" />
+      <module name="MAProjectBookingServices" target="23" />
+      <module name="MAProjectEurekaServer" target="23" />
+      <module name="MAProjectPaymentServices" target="23" />
+      <module name="MAProjectUserServices (1)" target="23" />
+      <module name="MAProjectVehicleServices" target="23" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -32,8 +33,10 @@
       <module name="MAProjectApiGateway" options="-parameters" />
       <module name="MAProjectBookingServices" options="-parameters" />
       <module name="MAProjectEurekaServer" options="-parameters" />
+      <module name="MAProjectOwnerServices" options="-parameters" />
       <module name="MAProjectPaymentServices" options="-parameters" />
       <module name="MAProjectUserServices" options="-parameters" />
+      <module name="MAProjectUserServices (1)" options="-parameters" />
       <module name="MAProjectVehicleServices" options="-parameters" />
     </option>
   </component>

@@ -14,7 +14,7 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    // Create Owner
+    // Create User
     public User createUser(User user) {
         return userRepo.save(user);
     }
@@ -25,22 +25,23 @@ public class UserService {
     }
 
     // Get User by ID
-    public Optional<User> getUserById(Long id) {
+    public Optional<User> getUserById(int id) {
         return userRepo.findById(id);
     }
 
     // Update User
-    public User updateUser(Long id, User updatedUser) {
+    public User updateUser(int id, User updatedUser) {
         return userRepo.findById(id).map(user -> {
             user.setName(updatedUser.getName());
             user.setEmail(updatedUser.getEmail());
             user.setContact(updatedUser.getContact());
+            user.setAddress(updatedUser.getAddress());
             return userRepo.save(user);
         }).orElse(null);
     }
 
     // Delete User
-    public boolean deleteUser(Long id) {
+    public boolean deleteUser(int id) {
         if (userRepo.existsById(id)) {
             userRepo.deleteById(id);
             return true;

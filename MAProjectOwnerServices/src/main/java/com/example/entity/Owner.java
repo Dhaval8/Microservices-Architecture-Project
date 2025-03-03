@@ -1,9 +1,10 @@
 package com.example.entity;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "owners")
+public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
@@ -14,7 +15,7 @@ public class User {
     public String address;
 
     // Constructors
-    public User(String name, String email, String contact, String address) {
+    public Owner(String name, String email, String contact, String address) {
         this.name = name;
         this.email = email;
         this.contact = contact;
