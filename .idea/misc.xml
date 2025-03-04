@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/MAProjectPaymentServices/pom.xml" />
         <option value="$PROJECT_DIR$/MAProjectVehicleServices/pom.xml" />
         <option value="$PROJECT_DIR$/MAProjectOwnerServices/pom.xml" />
+        <option value="$PROJECT_DIR$/Vehicle/pom.xml" />
+        <option value="$PROJECT_DIR$/VehicleKilometerTracking/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

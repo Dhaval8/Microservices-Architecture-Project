@@ -32,7 +32,7 @@ public class VehicleKilometerTrackingServiceImpl implements VehicleKilometerTrac
 
     @Override
     public ResponseEntity<VehicleKilometerTracking> createVehicleKilometerTracking(VehicleKilometerTracking vehicleKilometerTracking) {
-        return new ResponseEntity<>(vehicleKilometerTracking, HttpStatus.CREATED);
+        return new ResponseEntity<>(repository.save(vehicleKilometerTracking), HttpStatus.CREATED);
     }
 
     @Override

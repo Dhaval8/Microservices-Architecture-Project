@@ -16,15 +16,14 @@ public class VehicleKilometerTracking {
 
     double vehicleKilometerTotalKilometers;
 
-    @CreatedDate
     Date vehicleKilometerLastUpdated;
 
-    public int getTrackingID() {
+    public int getVehicleKilometerTrackingID() {
         return vehicleKilometerTrackingID;
     }
 
-    public void setTrackingID(int trackingID) {
-        this.vehicleKilometerTrackingID = trackingID;
+    public void setVehicleKilometerTrackingID(int vehicleKilometerTrackingID) {
+        this.vehicleKilometerTrackingID = vehicleKilometerTrackingID;
     }
 
     public int getVehicleKilometerVehicleID() {
