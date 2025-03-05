@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.UserDTO;
 import com.example.entity.User;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class UserController {
         return owner.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+
     // Update User
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
@@ -46,5 +48,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable int id) {
         return userService.deleteUser(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/dtodetails")
+    public UserDTO getUserDTOById(@PathVariable int id) {
+        // Dummy data, replace with database lookup if needed
+        return new UserDTO(id, "John Doe", "john.doe@example.com", "7534265789", "Japan");
     }
 }

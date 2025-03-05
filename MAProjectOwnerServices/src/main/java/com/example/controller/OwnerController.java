@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.client.UserClient;
+import com.example.dto.UserDTO;
 import com.example.entity.Owner;
 import com.example.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +49,16 @@ public class OwnerController {
     public ResponseEntity<Void> deleteOwner(@PathVariable int id) {
         return ownerService.deleteOwner(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
+
+    private final UserClient userClient;
+
+    public OwnerController(UserClient userClient) {
+        this.userClient = userClient;
+    }
+
+    @GetMapping("/{ownerId}/user/{userId}")
+    public UserDTO getUserForOwner(@PathVariable int ownerId, @PathVariable int userId) {
+        return userClient.getUserById(userId);
+    }
+
 }

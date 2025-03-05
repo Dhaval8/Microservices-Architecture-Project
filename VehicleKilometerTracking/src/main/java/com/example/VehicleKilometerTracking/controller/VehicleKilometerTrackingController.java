@@ -1,8 +1,11 @@
 package com.example.VehicleKilometerTracking.controller;
 
+import com.example.VehicleKilometerTracking.client.FeignClientVehicle;
+import com.example.VehicleKilometerTracking.dto.VehicleDTO;
 import com.example.VehicleKilometerTracking.entity.VehicleKilometerTracking;
 import com.example.VehicleKilometerTracking.service.VehicleKilometerTrackingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +15,9 @@ import java.util.List;
 public class VehicleKilometerTrackingController {
     @Autowired
     VehicleKilometerTrackingService service;
+
+    @Autowired
+    FeignClientVehicle feignClientVehicle;
 
     @GetMapping("/")
     public ResponseEntity<List<VehicleKilometerTracking>> getAllVehicleKilometerTracking() {
@@ -36,5 +42,17 @@ public class VehicleKilometerTrackingController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteVehicleKilometerTracking(@PathVariable int id) {
         return service.deleteVehicleKilometerTracking(id);
+    }
+
+    @GetMapping("/{id}/vehicle")
+    public ResponseEntity<VehicleDTO> getVehicle(@PathVariable int id) {
+        VehicleKilometerTracking vehicleKilometerTracking = service.getVehicleKilometerTracking(id).getBody();
+        if(vehicleKilometerTracking ==null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        } else {
+            int vehicleID = vehicleKilometerTracking.getVehicleKilometerVehicleID();
+            VehicleDTO vehicle = feignClientVehicle.getVehicleById(vehicleID);
+            return new ResponseEntity<>(vehicle, HttpStatus.OK);
+        }
     }
 }
