@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.Vehicle.entity.VehicleEntity;
 import com.example.entity.User;
 import com.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,13 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private VehicleEntity vehicleentity;
+
+
     // Create User
     public User createUser(User user) {
+
         return userRepo.save(user);
     }
 

@@ -1,8 +1,9 @@
 package com.example.Service;
 
-//import com.example.Config.paymentConfig;
 import com.example.Entity.paymentEntity;
 import com.example.Repository.paymentRepository;
+import com.example.Vehicle.config.VehicleConfig;
+import com.example.Vehicle.entity.VehicleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,8 @@ public class paymentServiceImpl implements paymentService{
     @Autowired
     paymentRepository repo;
 
-//    @Autowired
-//    paymentConfig paymentconfig;
+    @Autowired
+    VehicleConfig vehicleconfig;
 
     @Override
     public List<paymentEntity> getAllPayment() {
@@ -29,10 +30,16 @@ public class paymentServiceImpl implements paymentService{
                 .orElseThrow(() -> new RuntimeException("Transaction not found with ID: " + transaction_id));
     }
 
-
     @Override
-    public paymentEntity createTransaction(paymentEntity paymententity) {
-        return repo.save(paymententity);
+    public paymentEntity createTransaction(paymentEntity payment) {
+        // Validate vehicle before saving payment
+        VehicleEntity vehicle = vehicleconfig.getVehicle(payment.getVehicle_id());
+
+        if (vehicle == null) {
+            throw new RuntimeException("Vehicle ID " + payment.getVehicle_id() + " does not exist.");
+        }
+
+        return repo.save(payment);
     }
 
     @Override
@@ -40,26 +47,22 @@ public class paymentServiceImpl implements paymentService{
         repo.deleteById(transaction_id);
     }
 
-    @Override
-    public paymentEntity updateTransaction(int transaction_id, paymentEntity paymententity) {
-        Optional<paymentEntity> pay = repo.findById(transaction_id);
-        if(pay.isEmpty()){
-            return null;
-        } else{
-            paymentEntity existingpay = pay.get();
-            existingpay.setAmount(paymententity.getAmount());
-            existingpay.setPayment_method(paymententity.getPayment_method());
-            return repo.save(existingpay);
-        }
+    public paymentEntity updateTransaction(int id, paymentEntity payment) {
+        return repo.findById(id)
+                .map(existingPayment -> {
+                    // Validate vehicle before updating payment
+                    VehicleEntity vehicle = vehicleconfig.getVehicle(payment.getVehicle_id());
+                    if (vehicle == null) {
+                        throw new RuntimeException("Vehicle ID " + payment.getVehicle_id() + " does not exist.");
+                    }
+
+                    existingPayment.setVehicle_id(payment.getVehicle_id());
+                    existingPayment.setAmount(payment.getAmount());
+                    existingPayment.setPayment_method(payment.getPayment_method());
+                    return repo.save(existingPayment);
+                }).orElseThrow(() -> new RuntimeException("Payment not found with id " + id));
     }
 
 
-//    public OrderResponseDTO getOrderDetails(int transaction_id) {
-//        Order order = orderRepository.findById(orderId)
-//                .orElseThrow(() -> new RuntimeException("Order not found"));
-//
-//        CustomerDTO customer = customerClient.getCustomerById(order.getCustomerId());
-//
-//        return new OrderResponseDTO(order.getId(), order.getProduct(), customer);
-//    }
+
 }

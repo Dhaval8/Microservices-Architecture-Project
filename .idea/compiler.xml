@@ -7,7 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Vehicle" />
         <module name="MAProjectOwnerServices" />
+        <module name="VehicleKilometerTracking" />
       </profile>
       <profile name="Annotation profile for MAProjectPaymentServices" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -38,6 +40,8 @@
       <module name="MAProjectUserServices" options="-parameters" />
       <module name="MAProjectUserServices (1)" options="-parameters" />
       <module name="MAProjectVehicleServices" options="-parameters" />
+      <module name="Vehicle" options="-parameters" />
+      <module name="VehicleKilometerTracking" options="-parameters" />
     </option>
   </component>
 </project>
