@@ -48,7 +48,7 @@ public class VehicleKilometerTrackingController {
     public ResponseEntity<VehicleDTO> getVehicle(@PathVariable int id) {
         VehicleKilometerTracking vehicleKilometerTracking = service.getVehicleKilometerTracking(id).getBody();
         if(vehicleKilometerTracking ==null) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } else {
             int vehicleID = vehicleKilometerTracking.getVehicleKilometerVehicleID();
             VehicleDTO vehicle = feignClientVehicle.getVehicleById(vehicleID);
