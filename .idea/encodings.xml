@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/MAAPIGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MAEureka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MAProjectApiGateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MAProjectBookingServices/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MAProjectEurekaServer/src/main/java" charset="UTF-8" />
