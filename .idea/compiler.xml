@@ -8,19 +8,21 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Vehicle" />
-        <module name="MAProjectOwnerServices" />
+        <module name="MAEureka" />
         <module name="VehicleKilometerTracking" />
+        <module name="MAProjectOwnerServices" />
+        <module name="MAAPIGateway" />
       </profile>
-      <profile name="Annotation profile for MAProjectUserServices" enabled="true">
+      <profile name="Annotation profile for MAProjectPaymentServices" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
-        <module name="MAProjectUserServices" />
         <module name="MAProjectPaymentServices" />
         <module name="MAProjectBookingServices" />
+        <module name="MAProjectUserServices" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +34,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MAAPIGateway" options="-parameters" />
+      <module name="MAEureka" options="-parameters" />
       <module name="MAProjectApiGateway" options="-parameters" />
       <module name="MAProjectBookingServices" options="-parameters" />
       <module name="MAProjectEurekaServer" options="-parameters" />
