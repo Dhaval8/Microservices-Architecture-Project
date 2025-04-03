@@ -9,20 +9,21 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Vehicle" />
         <module name="MAEureka" />
+        <module name="config-server" />
         <module name="VehicleKilometerTracking" />
         <module name="MAProjectOwnerServices" />
         <module name="MAAPIGateway" />
       </profile>
-      <profile name="Annotation profile for MAProjectPaymentServices" enabled="true">
+      <profile name="Annotation profile for MAProjectUserServices" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
+        <module name="MAProjectUserServices" />
         <module name="MAProjectPaymentServices" />
         <module name="MAProjectBookingServices" />
-        <module name="MAProjectUserServices" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -46,6 +47,7 @@
       <module name="MAProjectVehicleServices" options="-parameters" />
       <module name="Vehicle" options="-parameters" />
       <module name="VehicleKilometerTracking" options="-parameters" />
+      <module name="config-server" options="-parameters" />
     </option>
   </component>
 </project>

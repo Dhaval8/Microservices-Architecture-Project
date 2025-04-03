@@ -16,6 +16,8 @@
         <option value="$PROJECT_DIR$/MAAPIGateway/pom.xml" />
         <option value="$PROJECT_DIR$/MAEureka/MAEureka/pom.xml" />
         <option value="$PROJECT_DIR$/MAEureka/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
