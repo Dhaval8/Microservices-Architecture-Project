@@ -3,10 +3,7 @@ package com.example.Service;
 import com.example.Entity.bookingEntity;
 import com.example.Repository.bookingRepository;
 import com.example.Service.bookingService;
-import com.example.Vehicle.config.VehicleConfig;
-import com.example.Vehicle.entity.VehicleEntity;
-import com.example.entity.User;
-import com.example.userConfig.userConfig;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,23 +16,12 @@ public class bookingServiceImpl implements bookingService {
     @Autowired
     private bookingRepository bookingRepository;
 
-    @Autowired
-    private VehicleConfig vehicleconfig;
 
-    @Autowired
-    private userConfig userconfig;
 
     @Override
     public bookingEntity createBooking(bookingEntity booking) {
-        VehicleEntity vehicle = vehicleconfig.getVehicle(booking.getVehicle_id());
-        User user = userconfig.getUser(booking.getUser_id());
 
-        if (vehicle == null) {
-            throw new RuntimeException("Vehicle ID " + booking.getVehicle_id() + " does not exist.");
-        }
-        if(user == null){
-            throw new RuntimeException("User ID " + booking.getUser_id() + " does not exist.");
-        }
+
 
         return bookingRepository.save(booking);
     }
@@ -55,15 +41,6 @@ public class bookingServiceImpl implements bookingService {
     public bookingEntity updateBooking(int id, bookingEntity booking) {
         return bookingRepository.findById(id)
                 .map(existingBooking -> {
-                    // Validate vehicle before updating booking
-                    VehicleEntity vehicle = vehicleconfig.getVehicle(booking.getVehicle_id());
-                    User user = userconfig.getUser(booking.getUser_id());
-                    if (vehicle == null) {
-                        throw new RuntimeException("Vehicle ID " + booking.getVehicle_id() + " does not exist.");
-                    }
-                    if(user == null){
-                        throw new RuntimeException("User ID " + booking.getUser_id() + " does not exist.");
-                    }
 
                     existingBooking.setVehicle_id(booking.getVehicle_id());
                     existingBooking.setStatus(booking.getStatus());

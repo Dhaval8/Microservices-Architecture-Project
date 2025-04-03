@@ -2,13 +2,11 @@ package com.example.Service;
 
 import com.example.Entity.paymentEntity;
 import com.example.Repository.paymentRepository;
-import com.example.Vehicle.config.VehicleConfig;
-import com.example.Vehicle.entity.VehicleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class paymentServiceImpl implements paymentService{
@@ -16,8 +14,6 @@ public class paymentServiceImpl implements paymentService{
     @Autowired
     paymentRepository repo;
 
-    @Autowired
-    VehicleConfig vehicleconfig;
 
     @Override
     public List<paymentEntity> getAllPayment() {
@@ -32,12 +28,6 @@ public class paymentServiceImpl implements paymentService{
 
     @Override
     public paymentEntity createTransaction(paymentEntity payment) {
-        // Validate vehicle before saving payment
-        VehicleEntity vehicle = vehicleconfig.getVehicle(payment.getVehicle_id());
-
-        if (vehicle == null) {
-            throw new RuntimeException("Vehicle ID " + payment.getVehicle_id() + " does not exist.");
-        }
 
         return repo.save(payment);
     }
@@ -50,12 +40,6 @@ public class paymentServiceImpl implements paymentService{
     public paymentEntity updateTransaction(int id, paymentEntity payment) {
         return repo.findById(id)
                 .map(existingPayment -> {
-                    // Validate vehicle before updating payment
-                    VehicleEntity vehicle = vehicleconfig.getVehicle(payment.getVehicle_id());
-                    if (vehicle == null) {
-                        throw new RuntimeException("Vehicle ID " + payment.getVehicle_id() + " does not exist.");
-                    }
-
                     existingPayment.setVehicle_id(payment.getVehicle_id());
                     existingPayment.setAmount(payment.getAmount());
                     existingPayment.setPayment_method(payment.getPayment_method());
