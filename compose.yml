@@ -1,8 +1,10 @@
+version: '3.8'
+
 services:
   mysql-db:
     image: mysql:8.0
     container_name: mysql-db
-    restart: always   #optional
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: car_rental_system
@@ -10,24 +12,11 @@ services:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
-
-  api-gateway:
-    build: ./MAAPIGateway   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
-    container_name: ma-project-api-gateway
-    restart: always
-    depends_on:
-      - eureka-server
-      - mysql-db
-    environment:
-      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
-    ports:
-      - "9000:9000"
-#    networks:
-#      - ma-project-network
-
+    networks:
+      - ma-project-network
 
   eureka-server:
-    build: ./MAEureka   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
+    build: ./MAEureka
     container_name: ma-project-eureka-server
     restart: always
     depends_on:
@@ -38,11 +27,25 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
     ports:
       - "8761:8761"
-#    networks:
-#      - ma-project-network
+    networks:
+      - ma-project-network
+
+  api-gateway:
+    build: ./MAAPIGateway
+    container_name: ma-project-api-gateway
+    restart: always
+    depends_on:
+      - eureka-server
+      - mysql-db
+    environment:
+      eureka.client.service-url.defaultZone: http://eureka-server:8761/eureka/
+    ports:
+      - "9000:9000"
+    networks:
+      - ma-project-network
 
   booking-service:
-    build: ./MAProjectBookingServices   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
+    build: ./MAProjectBookingServices
     container_name: ma-project-booking-service
     restart: always
     depends_on:
@@ -53,32 +56,32 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      eureka.client.service-url.defaultZone: http://eureka-server:8761/eureka/
     ports:
       - "8081:8081"
-#    networks:
-#      - ma-project-network
+    networks:
+      - ma-project-network
 
   owner-service:
-    build: ./MAProjectOwnerServices   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
+    build: ./MAProjectOwnerServices
     container_name: ma-project-owner-service
     restart: always
     depends_on:
       - payment-service
-      - eureka-server 
+      - eureka-server
       - mysql-db
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      eureka.client.service-url.defaultZone: http://eureka-server:8761/eureka/
     ports:
       - "8082:8082"
-#    networks:
-#      - ma-project-network
+    networks:
+      - ma-project-network
 
   payment-service:
-    build: ./MAProjectPaymentServices   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
+    build: ./MAProjectPaymentServices
     container_name: ma-project-payment-service
     restart: always
     depends_on:
@@ -89,14 +92,14 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      eureka.client.service-url.defaultZone: http://eureka-server:8761/eureka/
     ports:
       - "8084:8084"
-#    networks:
-#      - ma-project-network
+    networks:
+      - ma-project-network
 
   user-service:
-    build: ./MAProjectUserServices   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
+    build: ./MAProjectUserServices
     container_name: ma-project-user-service
     restart: always
     depends_on:
@@ -106,14 +109,14 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      eureka.client.service-url.defaultZone: http://eureka-server:8761/eureka/
     ports:
       - "8083:8083"
-#    networks:
-#      - ma-project-network
+    networks:
+      - ma-project-network
 
   vehicle-service:
-    build: ./Vehicle   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
+    build: ./Vehicle
     container_name: ma-project-vehicle-service
     restart: always
     depends_on:
@@ -123,14 +126,14 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      eureka.client.service-url.defaultZone: http://eureka-server:8761/eureka/
     ports:
       - "8085:8085"
-#    networks:
-#      - ma-project-network
+    networks:
+      - ma-project-network
 
   vehicle-km-service:
-    build: ./VehicleKilometerTracking   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
+    build: ./VehicleKilometerTracking
     container_name: ma-project-vehicle-km-service
     restart: always
     depends_on:
@@ -140,17 +143,16 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
-        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
+      eureka.client.service-url.defaultZone: http://eureka-server:8761/eureka/
     ports:
       - "8086:8086"
-#    networks:
-#      - ma-project-network
-
+    networks:
+      - ma-project-network
 
 networks:
   ma-project-network:
-    driver: bridge   #optional
+    driver: bridge
 
 volumes:
   mysql-data:
-    driver: local     #optional
+    driver: local
