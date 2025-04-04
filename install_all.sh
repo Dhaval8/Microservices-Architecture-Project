@@ -20,9 +20,8 @@ cd VehicleKilometerTracking
 mvn clean install
 cd -
 
-clear
 cd MAProjectUserServices                                                                                                                                  
-mvn clean install -e
+mvn clean install
 cd -
 
 cd MAProjectBookingServices                                                                                                                               
