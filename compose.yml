@@ -19,13 +19,11 @@ services:
       - eureka-server
       - mysql-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
     ports:
       - "9000:9000"
-    networks:
-      - ma-project-network
+#    networks:
+#      - ma-project-network
 
 
   eureka-server:
@@ -40,8 +38,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
     ports:
       - "8761:8761"
-    networks:
-      - ma-project-network
+#    networks:
+#      - ma-project-network
 
   booking-service:
     build: ./MAProjectBookingServices   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
@@ -55,10 +53,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
     ports:
       - "8081:8081"
-    networks:
-      - ma-project-network
+#    networks:
+#      - ma-project-network
 
   owner-service:
     build: ./MAProjectOwnerServices   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
@@ -72,10 +71,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
     ports:
       - "8082:8082"
-    networks:
-      - ma-project-network
+#    networks:
+#      - ma-project-network
 
   payment-service:
     build: ./MAProjectPaymentServices   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
@@ -89,10 +89,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
     ports:
       - "8084:8084"
-    networks:
-      - ma-project-network
+#    networks:
+#      - ma-project-network
 
   user-service:
     build: ./MAProjectUserServices   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
@@ -105,10 +106,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
     ports:
       - "8083:8083"
-    networks:
-      - ma-project-network
+#    networks:
+#      - ma-project-network
 
   vehicle-service:
     build: ./Vehicle   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
@@ -121,10 +123,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
     ports:
       - "8085:8085"
-    networks:
-      - ma-project-network
+#    networks:
+#      - ma-project-network
 
   vehicle-km-service:
     build: ./VehicleKilometerTracking   # This tells Docker Compose to look for a Dockerfile no seprate docker build –t needed
@@ -137,10 +140,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+        - eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka/
     ports:
       - "8086:8086"
-    networks:
-      - ma-project-network
+#    networks:
+#      - ma-project-network
 
 
 networks:
