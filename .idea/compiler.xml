@@ -9,21 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Vehicle" />
         <module name="config-server" />
+        <module name="MAProjectPaymentServices" />
         <module name="MAProjectOwnerServices" />
         <module name="MAProjectUserServices" />
         <module name="MAProjectBookingServices" />
         <module name="MAEureka" />
         <module name="VehicleKilometerTracking" />
         <module name="MAAPIGateway" />
-      </profile>
-      <profile name="Annotation profile for MAProjectPaymentServices" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
-        <module name="MAProjectPaymentServices" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

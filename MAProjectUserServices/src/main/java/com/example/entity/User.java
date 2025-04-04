@@ -13,13 +13,13 @@ public class User {
     public String contact;
     public String address;
 
-    // Constructors
-    public User(String name, String email, String contact, String address) {
-        this.name = name;
-        this.email = email;
-        this.contact = contact;
-        this.address = address;
-    }
+//    // Constructors
+//    public User(String name, String email, String contact, String address) {
+//        this.name = name;
+//        this.email = email;
+//        this.contact = contact;
+//        this.address = address;
+//    }
 
     // Getters and Setters
     public int getId() { return id; }
