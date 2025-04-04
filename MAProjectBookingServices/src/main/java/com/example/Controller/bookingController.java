@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/bookings")
+//@RequestMapping("/bookings")
 public class bookingController {
     @Autowired
     private bookingService bookingService;

@@ -15,7 +15,7 @@ import java.util.List;
 //    String payment_method;
 
 @RestController
-@RequestMapping("/transactions")
+//@RequestMapping("/transactions")
 public class paymentController {
     @Autowired
     paymentService paymentservice;

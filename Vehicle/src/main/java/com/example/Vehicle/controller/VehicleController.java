@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping("vehicles")
+//@RequestMapping("vehicle")
 public class VehicleController {
     @Autowired
     VehicleService service;
