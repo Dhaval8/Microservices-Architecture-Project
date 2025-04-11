@@ -1,26 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-gateway-service
+  name: config-server-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-gateway-service
+      app: config-server-service
   template:
     metadata:
       labels:
-        app: api-gateway-service
+        app: config-server-service
     spec:
       containers:
-        - name: api-gateway-service
-          image: microservices-architecture-project-api-gateway
+        - name: config-server-service
+          image: microservices-architecture-project-config-server
           imagePullPolicy: Never
           ports:
-            - containerPort: 9000
+            - containerPort: 8888
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: "default"
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: "http://eureka-service:8761/eureka/"
-
