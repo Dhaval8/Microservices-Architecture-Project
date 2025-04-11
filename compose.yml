@@ -15,12 +15,30 @@ services:
     networks:
       - ma-project-network
 
+  config-server:
+    image: config-server-image
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - ma-project-network
+    environment:
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/binitgudhka28/config-repo.git
+      # Replace with your Git repo
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8888/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
   eureka-server:
     build: ./MAEureka
     container_name: ma-project-eureka-server
     restart: always
     depends_on:
       - mysql-db
+
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
@@ -29,6 +47,7 @@ services:
       - "8761:8761"
     networks:
       - ma-project-network
+
 
   api-gateway:
     build: ./MAAPIGateway
@@ -105,6 +124,7 @@ services:
     depends_on:
       - eureka-server
       - mysql-db
+
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/car_rental_system
       SPRING_DATASOURCE_USERNAME: root
