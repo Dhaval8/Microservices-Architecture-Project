@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: eureka-service
-          image: eureka-server:1.0
+          image: microservices-architecture-project-eureka-server
           imagePullPolicy: Never
           ports:
             - containerPort: 8761

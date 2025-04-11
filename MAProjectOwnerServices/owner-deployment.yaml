@@ -1,26 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service
+  name: owner-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-service
+      app: owner-service
   template:
     metadata:
       labels:
-        app: user-service
+        app: owner-service
     spec:
       containers:
-        - name: user-service
-          image: microservices-architecture-project-user-service
+        - name: owner-service
+          image: microservices-architecture-project-owner-service
           imagePullPolicy: Never
           ports:
-            - containerPort: 8083
+            - containerPort: 8082
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: "default"
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://mysql-service:3306/car_rental_system
             - name: SPRING_DATASOURCE_USERNAME
@@ -29,4 +27,3 @@ spec:
               value: root
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: "http://eureka-service:8761/eureka/"
-

@@ -14,7 +14,16 @@ spec:
     spec:
       containers:
         - name: booking-service
-          image: booking-service:1.0
+          image: microservices-architecture-project-booking-service
           imagePullPolicy: Never
           ports:
             - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service:3306/car_rental_system
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "http://eureka-service:8761/eureka/"
